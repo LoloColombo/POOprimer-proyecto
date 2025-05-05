@@ -3,10 +3,10 @@ package javaapplication1;
 public class Producto {
 
     //atributos y valores por defecto
-    private String nombre;
-    private float precio;
-    private long codigoBarra;
-    private String marca;
+    protected String nombre;
+    protected float precio;
+    protected long codigoBarra;
+    protected String marca;
 
     //constructor con valores por defecto
     public Producto()
@@ -58,4 +58,44 @@ public class Producto {
     public void setMarca(String newMarca) {
         this.nombre = newMarca;
     }
+    
+    
+    
+   public void MostrarProductos()
+   {
+    System.out.println("Datos del producto");
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Precio: " + this.precio);
+        System.out.println("Codigo de Barras: " + this.codigoBarra);
+        System.out.println("Marca: " + this.marca);
+   }
+    
+   @Override
+   public String toString()
+   {
+   String salida="Producto{";
+   salida+= "nombre: " + this.nombre + ", ";
+   salida+= "precio: " + this.precio + ", ";
+   salida+= "Codigo De Barras: " + this.codigoBarra + ", ";
+   salida+= "Marca: " + this.marca + ", ";
+   
+   return salida;
+   }
+   
+   //equals para comparar objetos ya que == no funciona 
+   @Override
+   public boolean equals(Object o)
+   {
+     if (this == o){ return true;}
+     if (o == null){ return false;}
+     if (this.getClass() != o.getClass()){return false;}
+     Producto otroProducto = (Producto) o; //casteo
+     if (otroProducto.precio != this.precio){return false;}
+     if (otroProducto.codigoBarra != this.codigoBarra){return false;}
+     if (otroProducto.nombre.equals(this.nombre) !=true){return false;}//porque es string 
+     if(otroProducto.marca.equals(this.marca) !=true) {return false;}
+       return true;//mismo objeto
+   }
+   
+   
 }
