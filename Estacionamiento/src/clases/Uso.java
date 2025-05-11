@@ -63,10 +63,52 @@ public class Uso {
     
     
     //metodos
+    
+    @Override
+    public String toString() {
+        String salida = "Uso{";
+        salida += "cliente: " + this.cliente + ", ";
+        salida += "lugar: " + this.lugar + ", ";
+        salida += "entrada: " + this.entrada + ", ";
+        salida += "salida: " + this.salida + ", ";
+        salida += "tarifaHora: " + this.tarifaHora + "}";
+        return salida;
+    }
+
+    // equals para comparar objetos ya que == no funciona
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Uso otroUso = (Uso) o;
+        if (!this.cliente.equals(otroUso.cliente)) {
+            return false;
+        }
+        if (!this.lugar.equals(otroUso.lugar)) {
+            return false;
+        }
+        if (this.entrada != otroUso.entrada) {
+            return false;
+        }
+        if (this.salida != otroUso.salida) {
+            return false;
+        }
+        return Float.compare(otroUso.tarifaHora, this.tarifaHora) == 0;
+    }
+    
+    
     public float CalcularTotal(int entrada, int salida, float tarifaHora)
     {
         int tiempoTotal = entrada - salida;
         float tarifaTotal = tiempoTotal * tarifaHora;
         return tarifaTotal;
     }
+    
+    
+    
+    
 }
