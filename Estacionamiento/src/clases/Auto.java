@@ -1,62 +1,32 @@
 package clases;
 
-public class Auto {
 
-    protected String patente;
-    protected String modelo;
-    protected String marca;
-    protected String color;
+public class Auto extends Vehiculo{
+
+protected int cantidadPuertas;
+
 
 //constructor
-    public Auto(String patente, String modelo, String marca, String color) {
-        this.patente = patente;
-        this.modelo = modelo;
-        this.marca = marca;
-        this.color = color;
+    public Auto(String patente, String modelo, String marca, String color, int cantidadPuertas) {
+        super(patente, modelo, marca, color);
+        this.cantidadPuertas = cantidadPuertas;
+
     }
 
-//getters y setters
-    public String getPatente() {
-        return patente;
+    public int getCantidadPuertas(){
+        return cantidadPuertas;
     }
-
-    public void setPatente(String patente) {
-        this.patente = patente;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    public void setCantidadPuertas(int cantidadPuertas){
+        this.cantidadPuertas = cantidadPuertas;
     }
 
 //metodos 
     @Override
     public String toString() {
-        String salida = "Auto{";
-        salida += "patente: " + this.patente + ", ";
-        salida += "modelo: " + this.modelo + ", ";
-        salida += "marca: " + this.marca + ", ";
-        salida += "color: " + this.color + ", ";
+        String salida = super.toString();
+        salida += ", cantidad Puertas: " + this.cantidadPuertas + "}";
         return salida;
+
     }
 
     //equals para comparar objetos ya que == no funciona 
@@ -71,18 +41,20 @@ public class Auto {
         if (this.getClass() != o.getClass()) {
             return false;
         }
-        Auto otroAuto = (Auto) o; //casteo
-        if (otroAuto.patente.equals(this.patente) != true) {
+        if (!super.equals(o)) {
             return false;
         }
-        if (otroAuto.modelo.equals(this.modelo) != true) {
-            return false;
-        }
-        if (otroAuto.marca.equals(this.marca) != true) {
-            return false;
-        }
-        //mismo objeto
-        return otroAuto.color.equals(this.color) == true;
+        Auto otroAuto = (Auto) o;
+        return this.cantidadPuertas ==  otroAuto.cantidadPuertas;
     }
 
+    @Override
+    public void estacionar(){
+        System.out.println("El auto con la patente" + patente + "ha estacionado");
+    }
+    
+    @Override
+    public void salirEstacionamiento(){
+        System.out.println("El auto con la patente" + patente + "ha salido del estacionamiento");
+    }
 }

@@ -1,6 +1,6 @@
 package clases;
 
-public class Camioneta extends Auto {
+public class Camioneta extends Vehiculo {
 
     protected boolean cajaAbierta;
 
@@ -42,6 +42,16 @@ public class Camioneta extends Auto {
         }
         Camioneta otraCamioneta = (Camioneta) o;
         return this.cajaAbierta == otraCamioneta.cajaAbierta;
+    }
+    
+    @Override
+        public void estacionar(){
+        System.out.println("La camioneta con la patente" + patente + "ha estacionado");
+    }
+    
+    @Override
+    public void salirEstacionamiento(){
+        System.out.println("La camioneta con la patente" + patente + "ha salido del estacionamiento");
     }
 
 }
